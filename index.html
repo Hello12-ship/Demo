@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Rose Day Shraddha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh; /* Forces full height */
+            display: flex; /* Flexbox for centering */
+            justify-content: center; /* Horizontal Center */
+            align-items: center; /* Vertical Center */
+            overflow: hidden; /* No scrolling */
+            position: relative;
+        }
+
+        /* BACKGROUND EFFECTS */
+        .bg-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 50, 80, 0.2) 0%, #000 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* FLOATING PARTICLES */
+        .particle {
+            position: absolute;
+            color: #ff2e63;
+            opacity: 0;
+            animation: float 6s linear infinite;
+            font-size: 1.2rem;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(110vh) scale(0.5); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* MAIN CARD */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px; /* Constrains width */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            z-index: 10;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+       
+        .rose-img {
+            width: 130px;
+            height: 130px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 10px 20px rgba(220, 20, 60, 0.5));
+            animation: bounce 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            background: linear-gradient(to right, #ff8aae, #ff4d6d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        
+        .btn-box {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            width: 100%;
+            justify-content: center;
+            height: 50px; /* Fixed height container to keep layout stable */
+        }
+
+        button {
+            padding: 12px 35px;
+            border-radius: 50px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            white-space: nowrap;
+        }
+
+        .yes-btn {
+            background: #ff4d6d;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            z-index: 20;
+        }
+
+        .no-btn {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            z-index: 9999; /* Ensure it stays on top when moving */
+        }
+
+        
+        .screen-2 {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .msg-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: white;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .msg-p {
+            font-size: 13px;
+            color: #ddd;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            color: #ff4d6d;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        
+        .hidden { display: none !important; }
+        .fade-in { animation: fadeIn 1s forwards; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <div class="glass-card">
+        
+        <!-- Screen 1 -->
+        <div id="screen1">
+            
+            <img src="https://i.ibb.co/tPJH98NG/c91468e0df690d82cc2cdb2c4a4e83af-removebg-preview.png" 
+                 onerror="this.src='https://cdn-icons-png.flaticon.com/512/1825/1825593.png'"
+                 alt="Rose" class="rose-img">
+
+            <h1>Happy Rose Day Shraddha 🌹</h1>
+            <p class="subtitle">A rose just for you 💖</p>
+
+            <div class="btn-box">
+                <button class="yes-btn" onclick="goNext()">Yes 💖</button>
+                <button class="no-btn" id="noBtn" onmouseover="moveBtn()" onclick="moveBtn()">No 🙊</button>
+            </div>
+        </div>
+
+      
+        <div id="screen2" class="screen-2">
+            <img src="https://i.ibb.co/tPJH98NG/c91468e0df690d82cc2cdb2c4a4e83af-removebg-preview.png" 
+                 alt="Rose" class="rose-img" style="width: 100px; height: 100px;">
+            
+            <div class="msg-title">This rose carries all my feelings for you, Ananya.</div>
+            
+            <div class="msg-p">
+                Every petal is a reminder of how special you are to me.<br>
+                Not just today, but every day, I choose you.
+            </div>
+
+            <div class="footer">Happy Rose Day ❤️🌹✨</div>
+        </div>
+
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const screen1 = document.getElementById('screen1');
+        const screen2 = document.getElementById('screen2');
+        const body = document.querySelector('body');
+
+        // Touch support for mobile
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveBtn();
+        });
+
+        function moveBtn() {
+           
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+
+         
+            const padding = 90;
+
+            // 4. Calculate max allowed positions
+            const maxLeft = screenWidth - btnWidth - padding;
+            const maxTop = screenHeight - btnHeight - padding;
+
+            // 5. Generate random position within safe area
+            // Math.max(padding, ...) ensures it doesn't go off the left/top
+            const newLeft = Math.max(padding, Math.random() * maxLeft);
+            const newTop = Math.max(padding, Math.random() * maxTop);
+
+            // 6. Apply styles
+            noBtn.style.position = 'fixed'; // FIXED breaks it out of the card flow
+            noBtn.style.left = newLeft + 'px';
+            noBtn.style.top = newTop + 'px';
+            
+            // 7. Fun interactions
+            const funnyTexts = ["Try Again! 🤪", "Too Slow! 😂", "Ops! 🙊", "Click Yes! 💖", "Nope! 🏃‍♂️"];
+            noBtn.innerText = funnyTexts[Math.floor(Math.random() * funnyTexts.length)];
+            noBtn.style.backgroundColor = 'black';
+            noBtn.style.borderColor = 'red';
+        }
+
+        function goNext() {
+            // Hide screen 1
+            screen1.classList.add('hidden');
+            noBtn.style.display = 'none'; // Completely hide the no button
+            
+            // Show screen 2
+            screen2.style.display = 'flex';
+            screen2.classList.add('fade-in');
+
+            // Launch Confetti
+            launchConfetti();
+        }
+
+        function launchConfetti() {
+            for(let i=0; i<30; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('particle');
+                heart.innerHTML = Math.random() > 0.5 ? '🌹' : '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '-10vh';
+                heart.style.animation = `float ${Math.random() * 2 + 2}s linear forwards`;
+                body.appendChild(heart);
+            }
+        }
+
+        // Init Background
+        for(let i=0; i<15; i++){
+            const p = document.createElement('div');
+            p.classList.add('particle');
+            p.innerHTML = '❤️';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDelay = Math.random() * 5 + 's';
+            body.appendChild(p);
+        }
+    </script>
+</body>
+</html>
